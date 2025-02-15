@@ -1,4 +1,8 @@
 # gl
+[![Go Reference](https://pkg.go.dev/badge/github.com/normalgopher/gl.svg)](https://pkg.go.dev/github.com/normalgopher/gl)
+[![Go Report Card](https://goreportcard.com/badge/github.com/normalgopher/gl)](https://goreportcard.com/report/github.com/normalgopher/gl)
+[![Discord Chat](https://img.shields.io/discord/1295775116566990848)](https://discord.gg/cQjRsRRDsU)
+
 Wrapper for OpenGL and WebGL in a single interface.
 
 This project is based on the work from [UnitofTime's Glitch internals](https://github.com/unitoftime/glitch).
