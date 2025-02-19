@@ -4,6 +4,7 @@ package gl
 
 import (
 	"fmt"
+	"reflect"
 	"unsafe"
 
 	"github.com/normalgopher/gl/internal"
@@ -405,7 +406,16 @@ func DrawArrays(mode Enum, first int32, count int32) {
 	internal.Current().Funcs.DrawArrays.Invoke(mode.Value(), first, count)
 }
 
-func DrawElements[T IndexType](mode Enum, xtype Enum, indices []T) {
+func DrawElements[T IndexType](mode Enum, indices []T) {
+	xtype := UNSIGNED_BYTE
+	switch reflect.ValueOf(indices[0]).Interface().(type) {
+	case uint8:
+		xtype = UNSIGNED_BYTE
+	case uint16:
+		xtype = UNSIGNED_SHORT
+	case uint32:
+		xtype = UNSIGNED_INT
+	}
 	jsData := goSliceToJsArray(indices)
 	internal.Current().Funcs.DrawElements.Invoke(mode.Value(), len(indices), xtype.Value(), jsData)
 }

@@ -4,6 +4,7 @@ package gl
 
 import (
 	"fmt"
+	"reflect"
 	"unsafe"
 
 	"github.com/go-gl/gl/v4.3-core/gl"
@@ -386,7 +387,16 @@ func DrawArrays(mode Enum, first int32, count int32) {
 	gl.DrawArrays(uint32(mode), first, count)
 }
 
-func DrawElements[T IndexType](mode Enum, xtype Enum, indices []T) {
+func DrawElements[T IndexType](mode Enum, indices []T) {
+	xtype := gl.UNSIGNED_BYTE
+	switch reflect.ValueOf(indices[0]).Interface().(type) {
+	case uint8:
+		xtype = gl.UNSIGNED_BYTE
+	case uint16:
+		xtype = gl.UNSIGNED_SHORT
+	case uint32:
+		xtype = gl.UNSIGNED_INT
+	}
 	gl.DrawElements(uint32(mode), int32(len(indices)), uint32(xtype), gl.Ptr(indices))
 }
 
