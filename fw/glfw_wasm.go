@@ -120,7 +120,7 @@ func CreateWindow(width int, height int, title string, monitor *Monitor, share *
 }
 
 func SwapInterval(interval int) {
-	// TODO: implement by knowing refresh-rate: seems like it's not possible to know the refresh rate except by using requestionAnimationFrame
+	// TODO: implement using a requestAnimationFrame loop
 	// glfw.SwapInterval(interval)
 }
 
